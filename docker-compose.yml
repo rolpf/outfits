@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  app:
+    container_name: "${PROJECT_NAME}_app"
+    build:
+      context: .docker
+      dockerfile: Dockerfile
+    user: "1000:1000"
+    env_file: .env
+    volumes:
+      - ./:/var/www/html
+      - ./.docker/php.ini:/usr/local/etc/php/conf.d/php.ini
+    labels:
+      - "traefik.http.routers.${PROJECT_NAME}.rule=Host(`${PROJECT_NAME}.traefik.me`)"
+      - "traefik.http.routers.${PROJECT_NAME}-tls.tls.domains[0].main=${PROJECT_NAME}.traefik.me"
+      - "traefik.http.routers.${PROJECT_NAME}-tls.tls.domains[0].sans=${PROJECT_NAME}-*.traefik.me"
+      - "traefik.http.routers.${PROJECT_NAME}.tls=true"
+    networks:
+      - traefik
+
+
+networks:
+  traefik:
+    name: traefik
+    external: true
