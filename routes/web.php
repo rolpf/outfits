@@ -14,26 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $brands = collect(file('brands.txt'));
-
-    $alphabet = range('A', 'Z');
-    $brands = $brands->map(function ($line) {
-        return ucfirst(str_replace("\n","",$line));
-    });
-    $brands = $brands->filter(function ($line) use($alphabet) {
-        return !in_array($line, $alphabet);
-    })->values();
-
-    $brands = $brands->filter(function ($line, $index) {
-        return $index % 2 === 0;
-    })->values();
-
-    $brands = $brands->map(function ($line) {
-        return ['name' => $line];
-    });
-
-
-    dd($brands->all());
     return view('welcome');
 });
 
