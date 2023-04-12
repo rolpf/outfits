@@ -1,25 +1,79 @@
-version: '3.7'
+version: '3'
+
 services:
-  app:
-    container_name: "${PROJECT_NAME}_app"
-    build:
-      context: .docker
-      dockerfile: Dockerfile
-    user: "1000:1000"
-    env_file: .env
-    volumes:
-      - ./:/var/www/html
-      - ./.docker/php.ini:/usr/local/etc/php/conf.d/php.ini
-    labels:
-      - "traefik.http.routers.${PROJECT_NAME}.rule=Host(`${PROJECT_NAME}.traefik.me`)"
-      - "traefik.http.routers.${PROJECT_NAME}-tls.tls.domains[0].main=${PROJECT_NAME}.traefik.me"
-      - "traefik.http.routers.${PROJECT_NAME}-tls.tls.domains[0].sans=${PROJECT_NAME}-*.traefik.me"
-      - "traefik.http.routers.${PROJECT_NAME}.tls=true"
-    networks:
-      - traefik
+    traefik:
+        image: traefik:v2.5
+        command:
+            - "--providers.docker=true"
+            - "--providers.docker.exposedbydefault=false"
+            - "--entryPoints.web.address=:80"
+            - "--entryPoints.websecure.address=:443"
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - "/var/run/docker.sock:/var/run/docker.sock:ro"
+            - "./.docker/traefik/traefik.yml:/etc/traefik/traefik.yml"
+            - "./.docker/traefik/tls.yml:/etc/traefik/tls.yml"
+            - "~/certs:/etc/ssl/traefik"
 
+    db:
+        image: mysql:8
+        environment:
+            MYSQL_ROOT_PASSWORD: database
+            MYSQL_DATABASE: database
+            MYSQL_USER: database
+            MYSQL_PASSWORD: database
+        depends_on:
+            - traefik
+        volumes:
+            - ./.docker/db_data:/var/lib/mysql
+        ports:
+            - "3306:3306"
 
-networks:
-  traefik:
-    name: traefik
-    external: true
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        environment:
+            PMA_HOST: db
+            MYSQL_ROOT_PASSWORD: database
+            MYSQL_USER: database
+            MYSQL_PASSWORD: database
+        depends_on:
+            - traefik
+            - db
+        ports:
+            - "8081:80"
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.pma.rule=Host(`pma.traefik.me`)"
+            - "traefik.http.routers.pma.tls=true"
+            - "traefik.http.routers.pma-tls.tls.domains[0].main=pma.traefik.me"
+            - "traefik.http.routers.pma-tls.tls.domains[0].sans=pma-*.traefik.me"
+
+    app:
+        build:
+            context: ./.docker
+            args:
+                APACHE_DOCUMENT_ROOT: ${APACHE_DOCUMENT_ROOT:-/var/www/html}
+                PROJECT_NAME: ${PROJECT_NAME}
+        ports:
+            - "8000:8000"
+        environment:
+            APACHE_DOCUMENT_ROOT: /var/www/html/htdocs
+            PROJECT_NAME: seyo
+        depends_on:
+            - db
+            - traefik
+            - phpmyadmin
+        volumes:
+            - .:/var/www/html
+        user: "1000:1000"
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.${PROJECT_NAME}.rule=Host(`${PROJECT_NAME}.traefik.me`)"
+            - "traefik.http.routers.${PROJECT_NAME}.tls=true"
+            - "traefik.http.routers.${PROJECT_NAME}-tls.tls.domains[0].main=${PROJECT_NAME}.traefik.me"
+            - "traefik.http.routers.${PROJECT_NAME}-tls.tls.domains[0].sans=${PROJECT_NAME}-*.traefik.me"
+
+volumes:
+    db_data:
