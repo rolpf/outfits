@@ -43,6 +43,8 @@ class CategoriesSeeder extends Seeder
             ];
         });
 
+        $categories = $categories->unique('slug');
+
         DB::table('categories')->insert($categories->all());
     }
 }
