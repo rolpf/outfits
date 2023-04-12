@@ -11,7 +11,7 @@ export default function Select2(items) {
             this.selectedItem = item;
         },
         filteredItems() {
-            return items. (function (item, index, items) {
+            return items.filter(function (item, index, items) {
                 if(this.filterValue === '') {
                     return items
                 }
