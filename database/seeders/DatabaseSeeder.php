@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
@@ -22,7 +22,15 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             BrandsSeeder::class,
-            CategoriesSeeder::class
+            CategoriesSeeder::class,
+            OutfitSeeder::class,
+            PostSeeder::class,
+            ClothSeeder::class,
+            OutfitClothSeeder::class,
+            ClothBrandSeeder::class,
+            ClothCategorySeeder::class,
+            PostUserSeeder::class,
+            UserUserSeeder::class
         ]);
     }
 }

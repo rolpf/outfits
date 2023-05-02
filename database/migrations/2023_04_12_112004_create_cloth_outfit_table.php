@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('post_outfit', function (Blueprint $table) {
+        Schema::create('cloth_outfit', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('post_id')->constrained();
-            $table->foreignId('outfit_id')->constrained();
+            $table->foreignId('outfit_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('cloth_id')->constrained('clothes')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_outfit');
+        Schema::dropIfExists('cloth_outfit');
     }
 };

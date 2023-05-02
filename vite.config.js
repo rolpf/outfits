@@ -21,8 +21,8 @@ export default defineConfig({
         // Create a certificate and put it in your ~/.certs folder
         // https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development/
         https: {
-            key: readFileSync('/home/quentinhnrt/certs/_wildcard.traefik.me+2-key.pem'),
-            cert: readFileSync('/home/quentinhnrt/certs/_wildcard.traefik.me+2.pem'),
+            key: readFileSync('/home/quentinhnrt/certs/key.pem'),
+            cert: readFileSync('/home/quentinhnrt/certs/cert.pem'),
         }
 
     },
