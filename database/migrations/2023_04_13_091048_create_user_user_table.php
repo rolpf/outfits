@@ -8,26 +8,22 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('outfit_clothes', function (Blueprint $table) {
+        Schema::create('user_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('outfit_id')->constrained();
-            $table->foreignId('cloth_id')->constrained('clothes');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('follower_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('outfit_clothes');
+        Schema::dropIfExists('user_user');
     }
 };
