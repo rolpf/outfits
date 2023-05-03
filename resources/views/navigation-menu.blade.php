@@ -5,22 +5,22 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('mon-compte') }}">
+                    <a href="{{ route('account.index') }}">
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('mon-compte') }}" :active="request()->routeIs('mon-compte')">
+                    <x-jet-nav-link href="{{ route('account.index') }}" :active="request()->routeIs('account.index')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('mon-compte') }}" :active="request()->routeIs('mon-compte')">
+                    <x-jet-nav-link href="{{ route('account.clothes.index') }}" :active="request()->routeIs('account.clothes.index')">
                         {{ __('Mes vêtements') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('mon-compte') }}" :active="request()->routeIs('mon-compte')">
+                    <x-jet-nav-link href="{{ route('account.outfits.index') }}" :active="request()->routeIs('account.outfits.index')">
                         {{ __('Mes outifts') }}
                     </x-jet-nav-link>
 
@@ -101,9 +101,9 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <!-- Account Management -->
+                            <!-- account.index Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
+                                {{ __('Manage account.index') }}
                             </div>
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
@@ -147,7 +147,7 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('mon-compte') }}" :active="request()->routeIs('mon-compte')">
+            <x-jet-responsive-nav-link href="{{ route('account.index') }}" :active="request()->routeIs('account.index')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
         </div>
@@ -168,7 +168,7 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <!-- Account Management -->
+                <!-- account.index Management -->
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                     {{ __('Profile') }}
                 </x-jet-responsive-nav-link>

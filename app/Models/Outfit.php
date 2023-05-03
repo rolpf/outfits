@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Outfit extends Model
 {
@@ -12,7 +13,6 @@ class Outfit extends Model
     protected $fillable = [
         'user_id',
         'name',
-        'slug',
         'thumbnail',
     ];
 
@@ -29,5 +29,13 @@ class Outfit extends Model
     public function posts(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Post::class);
+    }
+
+    public function getImageUrl() {
+        if (filter_var($this->thumbnail, FILTER_VALIDATE_URL) !== false) {
+            return $this->thumbnail;
+        }
+
+        return Storage::disk('public')->url($this->thumbnail);
     }
 }

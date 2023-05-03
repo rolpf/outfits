@@ -21,8 +21,11 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
-])->prefix('/mon-compte')->group(function () {
+])->prefix('account')->name('account.')->group(function () {
     Route::get('/', function () {
         return view('dashboard');
-    })->name('mon-compte');
+    })->name('index');
+
+    Route::resource('clothes', \App\Http\Controllers\Account\ClothController::class)->except(['show']);
+    Route::resource('outfits', \App\Http\Controllers\Account\OutfitController::class)->except(['show']);
 });
