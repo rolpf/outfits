@@ -15,17 +15,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
-])->prefix('account')->name('account.')->group(function () {
-    Route::get('/', function () {
-        return view('dashboard');
-    })->name('index');
+])->group(function () {
+    Route::prefix('account')->name('account.')->group(function () {
+        Route::get('/', function () {
+            return view('dashboard');
+        })->name('index');
+    
+        Route::resource('clothes', \App\Http\Controllers\Account\ClothController::class)->except(['show']);
+        Route::resource('outfits', \App\Http\Controllers\Account\OutfitController::class)->except(['show']);
+    });
 
-    Route::resource('clothes', \App\Http\Controllers\Account\ClothController::class)->except(['show']);
-    Route::resource('outfits', \App\Http\Controllers\Account\OutfitController::class)->except(['show']);
+    Route::resource('post', \App\Http\Controllers\PostController::class)->except(['show', 'index', 'edit', 'update']);
 });
