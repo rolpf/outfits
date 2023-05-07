@@ -3,19 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Post;
+use App\Models\Outfit;
 
 class TimelineController extends Controller
 {
     public function index()
     {
-        // $user = Auth::user();
+        $user = auth()->user()->load('followers'); 
         $followers = $user->followers;
 
-        $posts = Post::whereIn('author_id', $followers->pluck('id')->push($user->id))
-                    ->with('author')
+        $posts = Post::whereIn('user_id', $followers->pluck('id')->push($user->id))
+                    ->with('user')
                     ->orderByDesc('created_at')
-                    // ->paginate(10);
+                    ->get();
 
-        return view('timeline', compact('posts'));
+        return view('timeline', compact('posts', 'user', 'followers'));
     }
 }
