@@ -18,4 +18,9 @@ class Post extends Model
     {
         return $this->belongsToMany(User::class, 'post_user');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
