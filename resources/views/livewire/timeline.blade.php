@@ -5,8 +5,8 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <h3>{{ $post->title }}</h3>
                 <p>{{ $post->content }}</p>
-                @isset($post->outfit_id)
 
+                @isset($post->outfit_id)
                     @if ($post->outfit_id)
                     <?php $outfit = App\Models\Outfit::find($post->outfit_id); ?>
                         @if ($outfit)
