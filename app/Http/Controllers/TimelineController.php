@@ -11,8 +11,8 @@ class TimelineController extends Controller
 {
     public function index()
     {
-        $user = auth()->user()->load('followers'); 
-        $followers = $user->followers;
+        $user = auth()->user(); 
+        $followers = $user->followers();
 
         $posts = Post::whereIn('user_id', $followers->pluck('id')->push($user->id))
                     ->with('user')
