@@ -1,4 +1,4 @@
-<aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-48 h-screen border">
+<aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-56 h-screen border">
     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50">
        <ul class="space-y-2 font-medium">
 
@@ -9,7 +9,7 @@
         </li>
 
           <li>
-             <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
+             <a href="{{ route('home') }}" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
                 <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
                 </svg>
@@ -17,7 +17,7 @@
              </a>
           </li>
           <li>
-            <a href="/post/create" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
+            <a href="{{ route('post.create') }}" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mb-1" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                     <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
                 </svg>
@@ -44,10 +44,10 @@
             <div x-show='open'>
                 <ul id="dropdown-example" class="py-2 space-y-2">
                     <li>
-                        <a href="/account/clothes" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 hover:bg-gray-100">{{ __('Clothes') }}</a>
+                        <a href="{{ route('account.clothes.index') }}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 hover:bg-gray-100">{{ __('Clothes') }}</a>
                     </li>
                     <li>
-                        <a href="/account/outfits" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 hover:bg-gray-100">{{ __('Outfits') }}</a>
+                        <a href="{{ route('account.outfits.index') }}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 hover:bg-gray-100">{{ __('Outfits') }}</a>
                     </li>
                 </ul>
             </div>
