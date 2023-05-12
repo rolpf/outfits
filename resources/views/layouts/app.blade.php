@@ -14,6 +14,14 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Styles -->
+        <div x-data="{ mobile: window.innerWidth < 1024 }" x-show="mobile">
+            @include('partials.navbar')
+        </div>
+
+        <div x-data="{ desktop: window.innerWidth >= 1024 }" x-show="desktop">
+            @include('partials.sidebar')
+        </div>
+
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
