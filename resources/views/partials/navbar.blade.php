@@ -1,4 +1,4 @@
-<nav class="fixed bottom-0 z-10 w-full h-16 border-t bg-white shadow inline-block">
+<nav class="fixed bottom-0 z-10 w-full h-16 border-t bg-white shadow inline-block lg:hidden">
     <div class="grid h-full max-w-lg grid-cols-5 mx-auto font-medium">
             <a href="#" class="inline-flex flex-col items-center justify-center px-5">
                 <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
