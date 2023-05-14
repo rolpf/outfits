@@ -1,12 +1,10 @@
 <x-app-layout>
     <div class="py-8">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 lg:ml-56">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 lg:mx-56">
+            <h1 class="my-8">{{ __("Send a post") }}</h1>
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                
                 <form method="POST" action="{{ route('post.store') }}">
                     @csrf
-                    <h1 class="font-bold text-xl my-4">{{ __("Send a post") }}</h1>
-
                     <div x-data="{ open: false}">
                         <button @click.prevent="open = ! open" class="block border rounded shadow-sm bg-white px-8 py-2 my-2 font-semibold"> {{ __('Add Outfit') }}</button>
                         <textarea type="text" name="content" placeholder="What's new?" class="w-full resize-none"></textarea>

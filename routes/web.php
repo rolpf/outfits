@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', App\Http\Livewire\Timeline::class)->name('home');
 
 Route::middleware([
     'auth:sanctum',
@@ -32,4 +30,5 @@ Route::middleware([
     });
 
     Route::resource('post', \App\Http\Controllers\PostController::class)->except(['show', 'index', 'edit', 'update']);
+    Route::resource('timeline', \App\Http\Controllers\TimelineController::class);
 });
