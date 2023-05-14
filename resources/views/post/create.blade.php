@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 lg:mx-56">
-            <h1 class="my-8">{{ __("Send a post") }}</h1>
+            <h1 class="my-8 text-3xl font-semibold">{{ __("Send a post") }}</h1>
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <form method="POST" action="{{ route('post.store') }}">
                     @csrf
