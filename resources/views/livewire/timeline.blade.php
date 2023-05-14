@@ -1,7 +1,9 @@
 <div class="lg:mx-56 py-8">
 
+    <h1 class="lg:mx-64">Timeline</h1>
+
     @foreach($posts as $post)
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 my-4 lg:mx-64 bg-white overflow-hidden shadow-xl sm:rounded-lg p-2">
+        <div class="post">
             <div class="flex items-center">
                 <img src="{{ $post->user->profile_photo_url }}" alt="{{ $post->user->name }}" class="w-12 h-12 rounded-full">
                 <p class="px-2 font-semibold">{{ $post->user->name }}</p>
