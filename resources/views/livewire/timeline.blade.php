@@ -1,6 +1,6 @@
 <div class="lg:mx-56 py-8">
 
-    <h1 class="lg:mx-64 text-3xl font-semibold">{{ __('Timeline') }}</h1>
+    <h1 class="page_title lg:mx-48 text-3xl font-semibold">{{ __('Timeline') }}</h1>
 
     @foreach($posts as $post)
         @include('components.post')
