@@ -5,14 +5,14 @@
             <h1 class="my-8 text-3xl font-semibold">{{ $profile->name }}</h1>
         </div>
         <div class="flex justify-center">
-            <div class="p-6 mx-2 border border-shadow">
-                <p>{{ $posts->count() }} {{ __('posts') }}</p>
+            <div class="p-6 mx-2 border border-shadow bg-white">
+                <p class="text-center font-semibold">{{ $posts->count() }} {{ __('posts') }}</p>
             </div>
-            <div class="p-6 mx-2 border border-shadow">
-                <p>{{ $profile->followers->count() }} {{ __('followers') }}</p>
+            <div class="p-6 mx-2 border border-shadow bg-white">
+                <p class="text-center font-semibold">{{ $profile->followers->count() }} {{ __('followers') }}</p>
             </div>
-            <div class="p-6 mx-2 border border-shadow">
-                <p>{{ $profile->following->count() }} {{ __('following') }}</p>
+            <div class="p-6 mx-2 border border-shadow bg-white">
+                <p class="text-center font-semibold">{{ $profile->following->count() }} {{ __('following') }}</p>
             </div>
         </div>
 
