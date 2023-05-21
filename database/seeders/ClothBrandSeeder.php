@@ -16,7 +16,7 @@ class ClothBrandSeeder extends Seeder
         $clothes = \App\Models\Cloth::all();
 
         foreach ($clothes as $cloth) {
-            $cloth->brands()->attach($brands->random(1));
+            $cloth->brands()->associate($brands->random(1));
         }
     }
 }

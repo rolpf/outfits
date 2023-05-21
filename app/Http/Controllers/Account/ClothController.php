@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Account;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cloth;
 use Illuminate\Http\Request;
 
 class ClothController extends Controller
@@ -12,7 +13,9 @@ class ClothController extends Controller
      */
     public function index()
     {
-        //
+        return view('account.clothes.index', [
+            'clothes' => auth()->user()->clothes()->paginate(10)
+        ]);
     }
 
     /**
@@ -20,7 +23,9 @@ class ClothController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', Cloth::class);
+
+        return view('account.clothes.create');
     }
 
     /**
@@ -60,6 +65,11 @@ class ClothController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $cloth = Cloth::findOrFail($id);
+        $this->authorize('delete', $cloth);
+
+        $cloth->delete();
+
+        return redirect()->route('account.clothes.index')->banner(sprintf(__("Cloth %s deleted"), $cloth->name));
     }
 }
