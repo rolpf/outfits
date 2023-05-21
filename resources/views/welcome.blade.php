@@ -8,13 +8,17 @@
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="antialiased flex items-center justify-center h-screen">
-        @php
-            $categories = \App\Models\Category::all();
-        @endphp
-        <div class="w-48">
-            <x-select2 :items="$categories" fieldName="test" />
-        </div>
+    <body class="antialiased">
+        <x-container >
+
+            @dd($user)
+
+            {{$user->id}}
+
+            getProfilePhotoUrlAttribute
+        
+            
+        </x-container>
 
     </body>
 </html>
