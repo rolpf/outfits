@@ -24,7 +24,7 @@ Route::middleware([
         Route::get('/', function () {
             return view('dashboard');
         })->name('index');
-    
+
         Route::resource('clothes', \App\Http\Controllers\Account\ClothController::class)->except(['show']);
         Route::resource('outfits', \App\Http\Controllers\Account\OutfitController::class)->except(['show']);
     });
