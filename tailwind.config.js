@@ -11,7 +11,9 @@ module.exports = {
 
     theme: {
         extend: {
-
+            colors: {
+                'bisque': '#ffe4c4',
+            }
         },
     },
 

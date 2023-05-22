@@ -3,7 +3,31 @@
 @tailwind utilities;
 
 @layer base {
-    .post {
-        @apply max-w-7xl mx-auto sm:px-6 lg:px-8 my-8 lg:mx-64 bg-white overflow-hidden shadow-xl sm:rounded-lg p-2;
+    .page_title{
+        @apply mx-4;
     }
+
+    .post {
+        @apply max-w-7xl mx-4 sm:px-6 lg:px-8 my-8 lg:ml-48 lg:mr-28 bg-white overflow-hidden shadow-xl sm:rounded-lg p-2;
+    }
+
+}
+
+.l_sidebar{
+    background-color: bisque;
+}
+
+.loader {
+    -webkit-animation: spinner 1.5s linear infinite;
+    animation: spinner 1.5s linear infinite;
+}
+
+@-webkit-keyframes spinner {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

@@ -16,7 +16,7 @@ class OutfitController extends Controller
     public function index()
     {
         return view('account.outfits.index', [
-            'outfits' => \Auth::user()->outfits()->paginate(10)
+            'outfits' => \Auth::user()->outfits()->orderByDesc('created_at')->paginate(10)
         ]);
     }
 
@@ -36,14 +36,17 @@ class OutfitController extends Controller
     public function store(OutfitRequest $request)
     {
         $this->authorize('create', Outfit::class);
-
         $data = $request->validated();
 
         if($request->hasFile('thumbnail')) {
-            $data['thumbnail'] = $request->file('thumbnail')->storePublicly(sprintf('%s/outfits', \Auth::id()));
+            $data['thumbnail'] = $request->file('thumbnail')->store(sprintf('%s/outfits', \Auth::id()), 'public');
         }
 
         $outfit = \Auth::user()->outfits()->create($data);
+
+        if($request->has('clothes')) {
+            $outfit->clothes()->attach($request->get('clothes'));
+        }
 
         return redirect()->route('account.outfits.index')->banner(sprintf(__("Outfit %s created"), $outfit->name));
     }
@@ -51,9 +54,13 @@ class OutfitController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Outfit $outfit)
     {
-        //
+        $this->authorize('update', $outfit);
+
+        return view('account.outfits.edit', [
+            'outfit' => $outfit,
+        ]);
     }
 
     /**
@@ -76,7 +83,6 @@ class OutfitController extends Controller
     public function destroy(Outfit $outfit)
     {
         $this->authorize('delete', $outfit);
-
         $outfit->delete();
 
         return redirect()->route('account.outfits.index')->banner(sprintf("Outfit %s deleted", $outfit->name));

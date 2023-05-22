@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Outfit;
+use App\Models\Cloth;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class OutfitPolicy
+class ClothPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class OutfitPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Outfit $outfit): bool
+    public function view(User $user, Cloth $cloth): bool
     {
         return true;
     }
@@ -35,36 +35,38 @@ class OutfitPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Outfit $outfit): Response
+    public function update(User $user, Cloth $cloth): Response
     {
-        return $user->id === $outfit->user_id
+        return $user->id === $cloth->user_id
             ? Response::allow()
-            : Response::deny(__('You do not own this outfit.'));
+            : Response::deny(__('You do not own this cloth.'));
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Outfit $outfit): Response
+    public function delete(User $user, Cloth $cloth): Response
     {
-        return $user->id === $outfit->user_id
+        return $user->id === $cloth->user_id
             ? Response::allow()
-            : Response::deny(__('You do not own this outfit.'));
+            : Response::deny(__('You do not own this cloth.'));
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Outfit $outfit): bool
+    public function restore(User $user, Cloth $cloth): bool
     {
-        //
+        return false;
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Outfit $outfit): bool
+    public function forceDelete(User $user, Cloth $cloth): Response
     {
-        //
+        return $user->id === $cloth->user_id
+            ? Response::allow()
+            : Response::deny(__('You do not own this cloth.'));
     }
 }
