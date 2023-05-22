@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', App\Http\Livewire\Timeline::class)->name('home');
+Route::get('/', function () {
+    return view('timeline');
+})->name('home');
 
 Route::middleware([
     'auth:sanctum',
@@ -30,6 +32,7 @@ Route::middleware([
     });
 
     Route::resource('post', \App\Http\Controllers\PostController::class)->except(['show', 'index', 'edit', 'update']);
-    Route::resource('timeline', \App\Http\Controllers\TimelineController::class);
-    Route::resource('bio/{id}', \App\Http\Controllers\BioController::class);
+    Route::get('bio/{id}', [\App\Http\Controllers\BioController::class, 'index']);
+    Route::post('/follow/{id}', [\App\Http\Controllers\BioController::class, 'follow'])->name('follow');
+    Route::post('/unfollow/{id}', [\App\Http\Controllers\BioController::class, 'unfollow'])->name('unfollow');
 });

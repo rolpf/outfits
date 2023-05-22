@@ -5,12 +5,14 @@ use App\Models\Post;
 use Livewire\WithPagination;
 
 use Livewire\Component;
+use App\Models\User;
 
 class Timeline extends Component
 {
     use WithPagination;
-    public $perPage = 10;
-
+    public $perPage = 6;
+    public $postPool = 'timeline';
+    public $user = null;
 
     public function loadMore()
     {
@@ -19,11 +21,20 @@ class Timeline extends Component
  
     public function render()
     {
-        $posts = auth()->user()->timeline();
+        switch ($this->postPool) {
+            case 'timeline':
+                $posts = auth()->user()->timeline();
+                break;
+            case 'profile':
+                $posts = User::findOrFail($this->user)->posts()->orderByDesc('created_at');
+                break;
+            default:
+                throw new \Exception("Invalid post pool");
+                break;
+        }
  
         return view('livewire.timeline', [
-            // 'posts' => $posts->paginate(10)
-            'posts' => Post::latest()->paginate($this->perPage),
+            'posts' => $posts->paginate($this->perPage),
         ]);
     }
 }
