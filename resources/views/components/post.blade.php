@@ -1,4 +1,4 @@
-<div class="post">
+<div class="max-w-7xl mx-4 sm:px-6 lg:px-8 my-8  bg-white overflow-hidden shadow-xl sm:rounded-lg p-2">
     <div class="flex items-center">
         <a href="{{ route('bio', $post->user->id) }}"><img src="{{ $post->user->profile_photo_url }}" alt="{{ $post->user->name }}" class="w-12 h-12 rounded-full"></a>
        <div class="flex flex-col">
