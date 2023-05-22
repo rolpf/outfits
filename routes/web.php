@@ -37,4 +37,8 @@ Route::middleware([
     Route::get('bio/{id}', [\App\Http\Controllers\BioController::class, 'index'])->name('bio');
     Route::post('/follow/{id}', [\App\Http\Controllers\BioController::class, 'follow'])->name('follow');
     Route::post('/unfollow/{id}', [\App\Http\Controllers\BioController::class, 'unfollow'])->name('unfollow');
+    Route::get('/search', function () {
+        return view('user-search');
+    })->name('search');
+    ;
 });
