@@ -31,10 +31,10 @@
                     </form>
                 @endif
             @else
-            <form action="{{ route('profile.show') }}" method="POST">
+            <a href="{{ route('profile.show') }}">
                 @csrf
                 <button class="border rounded shadow-sm bg-white w-full px-16 py-4 font-semibold my-2" type="submit">{{ __('Edit profile ') }}</button>
-            </form>
+            </a>
             @endif
 
 
