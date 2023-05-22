@@ -8,7 +8,7 @@ use Livewire\Component;
 class SelectBrand extends Component
 {
     public $filterBrand = null;
-    public $brandsToShow = 6;
+    public $brandsToShow = 12;
     public $selectedBrand = null;
     public function mount($selectedBrand = null) {
         $this->selectedBrand = $selectedBrand;

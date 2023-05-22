@@ -1,14 +1,14 @@
 <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
-            <h1 class="text-base font-semibold leading-6 text-gray-900">{{ __('Clothes') }}</h1>
-            <p class="mt-2 text-sm text-gray-700">{{ __('Manage your clothes') }}</p>
+            <h1 class="font-semibold text-3xl text-gray-800 leading-tight lg:my-8">{{ __('Clothes') }}</h1>
+            <p class="mt-2 text-lg text-gray-700">{{ __('Manage your clothes') }}</p>
         </div>
         <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-            <a href="{{ route('account.clothes.create') }}" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">{{ __('New cloth') }}</a>
+            <a href="{{ route('account.clothes.create') }}" class="border rounded shadow-sm bg-white w-full px-16 py-4 font-semibold my-2">{{ __('New cloth') }}</a>
         </div>
     </div>
-    <input class="my-4 py-2 px-4 w-full rounded-lg" wire:model="search" placeholder="{{ __('Search') }}">
+    <input type="search" class="my-4 py-2 px-4 w-full" wire:model="search" placeholder="{{ __('Search') }}">
     <div class="-mx-4 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg">
         <table class="min-w-full divide-y divide-gray-300">
             <thead>

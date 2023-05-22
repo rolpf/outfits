@@ -8,7 +8,7 @@ class ClothesSelect extends Component
 {
     public $search;
     public $clothesToDisplay = 10;
-    private $existingClothes;
+    public $existingClothes;
 
     public function mount($existingClothes = [])
     {

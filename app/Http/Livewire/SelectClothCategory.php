@@ -8,7 +8,7 @@ use Livewire\Component;
 class SelectClothCategory extends Component
 {
     public $filterCategory = null;
-    public $categoriesToShow = 6;
+    public $categoriesToShow = 12;
     public $selectedCategory = null;
     public function mount($selectedCategory = null) {
         $this->selectedCategory = $selectedCategory;
