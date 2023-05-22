@@ -1,11 +1,8 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+    <x-container class="py-8">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight mb-12">
             {{ __('Edit your outfit') }}
         </h2>
-    </x-slot>
-
-    <x-container class="py-8">
         <form method="POST" action="{{ route('account.outfits.update', $outfit) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')

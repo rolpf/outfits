@@ -19,14 +19,14 @@ class Cloth extends Model
 
     protected $table = 'clothes';
 
-    public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function category(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsTo(Category::class, 'cloth_category');
+        return $this->belongsToMany(Category::class, 'cloth_category');
     }
 
-    public function brands(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function brand(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsTo(Brand::class, 'cloth_brand');
+        return $this->belongsToMany(Brand::class, 'cloth_brand');
     }
 
     public function outfits(): \Illuminate\Database\Eloquent\Relations\BelongsToMany

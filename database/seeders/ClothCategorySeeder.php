@@ -16,7 +16,7 @@ class ClothCategorySeeder extends Seeder
         $categories = \App\Models\Category::all();
 
         foreach ($clothes as $cloth) {
-            $cloth->categories()->associate( $categories->random(rand(1, 3)) );
+            $cloth->category()->attach( $categories->random(rand(1, 3)) );
         }
     }
 }

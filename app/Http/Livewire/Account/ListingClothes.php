@@ -33,7 +33,12 @@ class ListingClothes extends Component
             return;
         }
 
+        if ($cloth->thumbnail) {
+            \Storage::disk('public')->delete($cloth->thumbnail);
+        }
+
         $cloth->delete();
+
         session()->flash('success', __('Cloth deleted successfully.'));
     }
 }
