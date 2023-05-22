@@ -32,7 +32,7 @@ Route::middleware([
     });
 
     Route::resource('post', \App\Http\Controllers\PostController::class)->except(['show', 'index', 'edit', 'update']);
-    Route::get('bio/{id}', [\App\Http\Controllers\BioController::class, 'index']);
+    Route::get('bio/{id}', [\App\Http\Controllers\BioController::class, 'index'])->name('bio');
     Route::post('/follow/{id}', [\App\Http\Controllers\BioController::class, 'follow'])->name('follow');
     Route::post('/unfollow/{id}', [\App\Http\Controllers\BioController::class, 'unfollow'])->name('unfollow');
 });

@@ -84,8 +84,11 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'user_user', 'follower_id', 'user_id');
     }
 
-    public function timeline(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    public function timeline()
     {
-        return $this->hasManyThrough(Post::class, Outfit::class);
+        $followerIds = $this->following()->pluck('user_id');
+        $followerIds[] = $this->id; // Include user's own id
+
+        return Post::whereIn('user_id', $followerIds)->orderByDesc('created_at');
     }
 }
