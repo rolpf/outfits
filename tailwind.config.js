@@ -12,7 +12,7 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                'bisque': '#ffe4c4',
+                'primary': '#7a5af5',
             }
         },
     },
