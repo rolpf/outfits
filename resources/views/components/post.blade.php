@@ -1,9 +1,9 @@
 <div class="post">
     <div class="flex items-center">
-        <a href=""><img src="{{ $post->user->profile_photo_url }}" alt="{{ $post->user->name }}" class="w-12 h-12 rounded-full"></a>
+        <a href="{{ route('bio', $post->user->id) }}"><img src="{{ $post->user->profile_photo_url }}" alt="{{ $post->user->name }}" class="w-12 h-12 rounded-full"></a>
        <div class="flex flex-col">
-        <p class="px-2 font-semibold">{{ $post->user->name }}</p>
-        <p class="px-2 font-light text-xs">Posted on {{ $post->created_at }}</p>
+            <a href="{{ route('bio', $post->user->id) }}" class="px-2 font-semibold">{{ $post->user->name }}</a>
+            <p class="px-2 font-light text-xs">Posted on {{ $post->created_at }}</p>
        </div>
     </div>
     <p class="my-2">{{ $post->content }}</p>

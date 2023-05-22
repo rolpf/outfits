@@ -42,12 +42,6 @@
             <div class="">
                 @livewire ('timeline', ['postPool' => 'profile', 'user' => $profile->id])
             </div>
-            <span class="my-2 text-xl font-semibold">{{ __('Outfits') }}</span>
-            <div class="">
-                {{-- @foreach($outfits as $outfit)
-    
-                @endforeach --}}
-            </div>
         </div>
     </x-container>
 </x-app-layout>

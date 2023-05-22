@@ -24,8 +24,8 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // public function timeline()
-    // {
-
-    // }
+    public function outfit()
+    {
+        return $this->belongsTo(Outfit::class, 'outfit_id');
+    }
 }
