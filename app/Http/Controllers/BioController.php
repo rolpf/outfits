@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\FollowNotification;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
@@ -26,18 +27,12 @@ class BioController extends Controller
     {
         $user = auth()->user();
         $profile = User::findOrFail($id);
-        
-        $user->following()->attach($profile);
 
-        return redirect()->back();
-    }
+        $user->following()->toggle($profile);
 
-    public function unfollow($id)
-    {
-        $user = auth()->user();
-        $profile = User::findOrFail($id);
-
-        $user->following()->detach($profile);
+        if($user->following->contains($profile)) {
+            $profile->notify(new FollowNotification($user));
+        }
 
         return redirect()->back();
     }

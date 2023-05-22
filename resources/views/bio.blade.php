@@ -19,17 +19,10 @@
 
 
             @if ($user->id != $profile->id)
-                @if ($user->following->contains($profile))
-                    <form action="{{ route('unfollow', ['id' => $profile->id]) }}" method="POST">
-                        @csrf
-                        <button class="border rounded shadow-sm bg-white w-full px-16 py-4 font-semibold my-2" type="submit">{{ __('Unfollow') }}</button>
-                    </form>
-                @else
-                    <form action="{{ route('follow', ['id' => $profile->id]) }}" method="POST">
-                        @csrf
-                        <button class="border rounded shadow-sm bg-white w-full px-16 py-4 font-semibold my-2" type="submit">{{ __('Follow ') }}</button>
-                    </form>
-                @endif
+                <form action="{{ route('follow', ['id' => $profile->id]) }}" method="POST">
+                    @csrf
+                    <button class="border rounded shadow-sm bg-white w-full px-16 py-4 font-semibold my-2" type="submit">{{ $user->following->contains($profile) ? __('Unfollow ') : __('Follow ') }}</button>
+                </form>
             @else
             <form action="{{ route('profile.show') }}" method="POST">
                 @csrf
@@ -45,7 +38,7 @@
             <span class="my-2 text-xl font-semibold">{{ __('Outfits') }}</span>
             <div class="">
                 {{-- @foreach($outfits as $outfit)
-    
+
                 @endforeach --}}
             </div>
         </div>
