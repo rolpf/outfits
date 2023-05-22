@@ -16,7 +16,7 @@ class BrandsSeeder extends Seeder
     public function run()
     {
         // Récupération des marques depuis le fichier brands.txt
-        // Après filtrage de certaines données non souhaitées du fichier 
+        // Après filtrage de certaines données non souhaitées du fichier
 
         $brands = collect(file(__DIR__.'/brands.txt'));
 
@@ -27,9 +27,10 @@ class BrandsSeeder extends Seeder
         $brands = $brands->filter(function ($line) use($alphabet) {
             return !in_array($line, $alphabet);
         })->values();
-    
+
         $brands = $brands->filter(function ($line, $index) {
-            return $index % 2 === 0;
+            // check if has only nummbers
+            return !is_numeric($line);
         })->values();
 
         $brands = $brands->map(function ($line) {

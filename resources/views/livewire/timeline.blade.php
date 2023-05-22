@@ -1,7 +1,4 @@
 <div>
-
-    {{-- <h1 class="lg:mx-64 text-3xl font-semibold">{{ __('Timeline') }}</h1> --}}
-
     @foreach($posts as $post)
         @include('components.post')
     @endforeach
