@@ -1,5 +1,5 @@
 <x-app-layout>
     <x-container class="py-16">
-        <livewire:account.listing-outfits />
+        <livewire:account.listing-clothes />
     </x-container>
 </x-app-layout>
