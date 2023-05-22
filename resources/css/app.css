@@ -7,10 +7,6 @@
         @apply mx-4;
     }
 
-    .post {
-        @apply max-w-7xl mx-4 sm:px-6 lg:px-8 my-8 lg:ml-48 lg:mr-28 bg-white overflow-hidden shadow-xl sm:rounded-lg p-2;
-    }
-
 }
 
 .l_sidebar{

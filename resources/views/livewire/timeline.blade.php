@@ -1,15 +1,14 @@
-<div>
-
-    @foreach($posts as $post)
-        @include('components.post')
-    @endforeach
-
+<div x-data>
+    <div class="mx-48">
+        @foreach($posts as $post)
+            @include('components.post')
+        @endforeach
+    </div>
 
     @if($posts->hasMorePages())
-        <button class="px-4 py-2 text-primary lg:mx-56" wire:click="loadMore">{{ __('Load more') }}</button>
-        <div></div>
-        <div wire:loading wire:target="loadMore">
-            ça charge mdr
+        <div x-intersect:enter="$wire.loadMore"></div>
+        <div class="w-full flex items-center justify-center mx-auto py-12" >
+            <x-loading wire:loading wire:target="loadMore" class="w-6 aspect-square border-2 border-t-2"/>
         </div>
     @endif
 </div>
