@@ -17,7 +17,6 @@ class ClothSeeder extends Seeder
             \DB::table('clothes')->insert([
                 'user_id' => $user->id,
                 'name' => fake()->text(100),
-                'slug' => fake()->text(100),
                 'thumbnail' => fake()->imageUrl(640, 480, 'fashion', true, 'Cloth'),
                 'created_at' => fake()->dateTimeBetween('-1 year', 'now'),
             ]);
